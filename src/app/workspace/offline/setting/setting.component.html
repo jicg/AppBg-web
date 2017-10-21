@@ -1,0 +1,47 @@
+<nz-spin [nzSpinning]="_isSpinning">
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="_submitForm()">
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <label nz-form-item-required>身份标识
+          <nz-tooltip [nzTitle]="'appId'">
+            <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+          </nz-tooltip>
+        </label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback
+           [nzValidateStatus]="getFormControl('appid')">
+        <nz-input [nzSize]="'large'" formControlName="appid" [nzId]="'appid'"></nz-input>
+        <div nz-form-explain *ngIf="getFormControl('appid').dirty&&getFormControl('appid').hasError('required')">
+          请输入 微信支付商户号
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <label nz-form-item-required>微信支付商户号(MchId)</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback [nzValidateStatus]="getFormControl('mchid')">
+        <nz-input [nzSize]="'large'" formControlName="mchid" [nzId]="'mchid'"></nz-input>
+        <div nz-form-explain *ngIf="getFormControl('mchid').dirty&&getFormControl('mchid').hasError('required')">
+          请输入 微信支付商户号
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <label nz-form-item-required>商户支付密钥(API密钥)</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback [nzValidateStatus]="getFormControl('paykey')">
+        <nz-input [nzSize]="'large'" formControlName="paykey" [nzId]="'paykey'"></nz-input>
+        <div nz-form-explain *ngIf="getFormControl('paykey').dirty&&getFormControl('paykey').hasError('required')">
+          请输入 商户支付密钥
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row style="margin-bottom:8px;">
+      <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="6">
+        <button nz-button [nzSize]="'large'" [nzType]="'primary'">保存</button>
+      </div>
+    </div>
+  </form>
+</nz-spin>

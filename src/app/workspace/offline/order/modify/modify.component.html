@@ -1,0 +1,114 @@
+<nz-spin [nzSpinning]="_isSpinning">
+  <form nz-form [formGroup]="validateForm">
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <label nz-form-item-required>单号</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzXs]="24"
+           nzHasFeedback
+           [nzValidateStatus]="getFormControl('orderno')">
+        <nz-input [nzSize]="'large'" [nzDisabled]="_isQ||_id != -1" formControlName="orderno"
+                  [nzId]="'orderno'"></nz-input>
+        <div nz-form-explain *ngIf="getFormControl('orderno').dirty&&getFormControl('orderno').hasError('required')">
+          请输入 订单编号
+        </div>
+      </div>
+    </div>
+
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <label nz-form-item-required>员工</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzXs]="24"
+           nzHasFeedback
+           [nzValidateStatus]="getFormControl('optname')">
+        <nz-input [nzDisabled]="_isQ" [nzSize]="'large'" formControlName="optname" [nzId]="'optname'"></nz-input>
+        <div nz-form-explain *ngIf="getFormControl('optname').dirty&&getFormControl('optname').hasError('required')">
+          请输入 员工
+        </div>
+      </div>
+    </div>
+
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <label nz-form-item-required>出货点</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzXs]="24"
+           nzHasFeedback
+           [nzValidateStatus]="getFormControl('sttype')">
+        <nz-select [nzDisabled]="_isQ" [nzSize]="'large'" formControlName="sttype">
+          <nz-option
+            [nzLabel]="'公司'"
+            [nzValue]="1">
+          </nz-option>
+          <nz-option
+            [nzLabel]="'门店'"
+            [nzValue]="2">
+          </nz-option>
+        </nz-select>
+        <div nz-form-explain *ngIf="getFormControl('sttype').dirty&&getFormControl('sttype').hasError('required')">
+          请选择 出货点
+        </div>
+      </div>
+    </div>
+
+
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <label nz-form-item-required>商品详情</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzXs]="24"
+           nzHasFeedback
+           [nzValidateStatus]="getFormControl('product')">
+        <nz-input [nzDisabled]="_isQ" [nzSize]="'large'" formControlName="product" [nzId]="'product'"></nz-input>
+        <div nz-form-explain *ngIf="getFormControl('product').dirty&&getFormControl('product').hasError('required')">
+          请输入 商品详情
+        </div>
+      </div>
+    </div>
+
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <label nz-form-item-required>金额</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzXs]="24"
+           nzHasFeedback
+           [nzValidateStatus]="getFormControl('amt')">
+        <nz-input [nzDisabled]="_isQ" [nzSize]="'large'" (nzBlur)="_vaildAmt()"
+                  formControlName="amt">
+          <ng-template #addOnBefore>$</ng-template>
+        </nz-input>
+
+        <div nz-form-explain *ngIf="getFormControl('product').dirty&&getFormControl('product').hasError('required')">
+          请输入 金额
+        </div>
+      </div>
+    </div>
+
+    <div nz-form-item nz-row>
+      <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+        <label>备注</label>
+      </div>
+      <div nz-form-control nz-col [nzSm]="14" [nzXs]="24"
+           nzHasFeedback
+           [nzValidateStatus]="getFormControl('remark')">
+        <nz-input [nzType]="'textarea'"
+                  [nzSize]="'large'"
+                  formControlName="remark"
+                  [nzDisabled]="_isQ"
+                  [nzId]="'remark'">
+
+        </nz-input>
+      </div>
+    </div>
+
+    <div nz-form-item nz-row style="margin-bottom:8px;">
+      <div nz-form-control nz-col [nzSpan]="14" [nzOffset]="6">
+        <button nz-button *ngIf="_id==-1" [nzSize]="'large'" [nzType]="'primary'" (click)="add()">新增</button>
+        <button nz-button *ngIf="!_isQ && _id!=-1" [nzSize]="'large'" [nzType]="'primary'" (click)="update()">保存</button>
+        <button nz-button *ngIf="!_isQ && _id!=-1" [nzSize]="'large'" [nzType]="'danger'" (click)="pay()">支付</button>
+      </div>
+
+    </div>
+  </form>
+</nz-spin>

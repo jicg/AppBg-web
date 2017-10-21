@@ -1,0 +1,8 @@
+{
+  "/": {
+    "target": "http://localhost:8080"
+  },
+  "ws://localhost:4200": {
+    "target": "ws://localhost:8080"
+  }
+}

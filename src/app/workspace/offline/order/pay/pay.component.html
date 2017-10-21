@@ -1,0 +1,26 @@
+<nz-card style="width: 300px;margin: 10px auto;" *ngIf="!_sacnState&&!_haserror">
+  <ng-template #body >
+    <div class="custom-image">
+      <img alt="jicg开发" width="100%" [src]="'/v1/offline/wxpay/'+_id"/>
+    </div>
+    <div class="custom-card">
+      <h3>请用微信扫描支付</h3>
+      <p>www.hellowcloud.com</p>
+    </div>
+  </ng-template>
+</nz-card>
+<nz-card style="width: 300px;margin: 10px auto;" *ngIf="_haserror">
+  <ng-template #body >
+    <nz-alert [nzType]="'error'" [nzMessage]="'错误'"
+              [nzDescription]="_errmsg">
+    </nz-alert>
+  </ng-template>
+</nz-card>
+
+<nz-card style="width: 300px;margin: 10px auto;" *ngIf="_sacnState&&!_haserror">
+  <ng-template #body >
+    <nz-alert [nzType]="'success'" [nzMessage]="'付款成功'"
+              [nzDescription]="_successMsg">
+    </nz-alert>
+  </ng-template>
+</nz-card>
